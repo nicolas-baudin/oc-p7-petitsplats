@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    justify-content: center;
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        img {
+            margin: 0 auto;
+            height: 50px;
+            width: 50px;
+        }
+        h1 {
+            color: $colour-primary;
+        }
+    }
+}

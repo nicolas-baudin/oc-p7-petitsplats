@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="public/css/main.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="public/img/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <title>Les petits plats</title>
+  </head>
+  <body>
+
+    <script src="https://kit.fontawesome.com/cb548c6cad.js" crossorigin="anonymous"></script>
+
+    <header>
+
+      <a href="index.html">
+        <img src="public/img/logo.svg" class="logo" alt="Les petits plats home page" />
+        <h1>Les petits plats</h1>
+      </a>
+
+    </header>
+
+    <main id="main">
+
+      <form action="search.html" class="searchbar" method="get">
+        <input type="text" class="searchbar__input" name="search" placeholder="Rechercher une recette" required>
+        <button class="searchbar__button"><span class="searchbar__button__icon fa-solid fa-magnifying-glass"></span></button>
+      </form>
+
+      <div class="filters">
+
+        <!-- <div class="filters__active">
+          <ul class="filters__active__category color--ing">
+            <li class="btn filters__active__btn">
+              <span class="filters__active__text">Coco</span>
+              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
+            </li>
+            <li class="btn filters__active__btn">
+              <span class="filters__active__text">Citron</span>
+              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
+            </li>
+            <li class="btn filters__active__btn">
+              <span class="filters__active__text">Sucre</span>
+              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
+            </li>
+          </ul>
+          <ul class="filters__active__category color--app">
+            <li class="btn filters__active__btn">
+              <span class="filters__active__text">Blender</span>
+              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
+            </li>
+          </ul>
+          <ul class="filters__active__category color--ute">
+            <li class="btn filters__active__btn">
+              <span class="filters__active__text">Verres</span>
+              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
+            </li>
+          </ul>
+        </div> -->
+
+        <div class="filters__list">
+          <div class="filters__list__category color--ing">
+            <div class="btn filters__list__btn">
+              <span class="filters__list__text">Ingrédients</span>
+              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+            </div>
+            <ul class="filters__list__ul ingfilters color--ing display-none"></ul>
+          </div>
+          <div class="filters__list__category color--app">
+            <div class="btn filters__list__btn">
+              <span class="filters__list__text">Appareils</span>
+              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+            </div>
+            <ul class="filters__list__ul appfilters color--app display-none"></ul>
+          </div>
+          <div class="filters__list__category color--ute">
+            <div class="btn filters__list__btn">
+              <span class="filters__list__text">Ustensiles</span>
+              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+            </div>
+            <ul class="filters__list__ul utefilters color--ute display-none"></ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="recipes"></div>
+
+    </main>
+
+    <script src="data/recipes.js"></script>
+    <script src="scripts/utils/tools.js"></script>
+    <script src="scripts/factories/recipes.js"></script>
+    <script src="scripts/factories/filters.js"></script>
+    <script src="scripts/pages/index.js"></script>
+    <script src="scripts/utils/displayMenus.js"></script>
+
+  </body>
+</html>

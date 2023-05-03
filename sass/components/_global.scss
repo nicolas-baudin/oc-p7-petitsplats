@@ -1,0 +1,35 @@
+a {
+    text-decoration: none;
+    color: $colour-black;
+}
+.btn {
+    @include btn;
+}
+.noselect {
+    @include noselect;
+}
+
+.inactive-animation {
+    opacity: 0;
+}
+.display-none {
+    display: none;
+}
+.display-block {
+    display: block;
+}
+.display-flex {
+    display: flex;
+}
+
+.color {
+    &--ing {
+        background-color: $colour-secondary-blue;
+    }
+    &--app {
+        background-color: $colour-secondary-green;
+    }
+    &--ute {
+        background-color: $colour-secondary-orange;
+    }
+}

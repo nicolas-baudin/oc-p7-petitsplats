@@ -1,0 +1,15 @@
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/mixins';
+@import 'utils/animations';
+
+@import 'base/minireset';
+@import 'base/base';
+@import 'base/typography';
+
+@import 'components/global';
+
+@import 'layout/header';
+@import 'layout/main';
+
+@import 'pages/index';

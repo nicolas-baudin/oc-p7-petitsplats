@@ -1,0 +1,12 @@
+body {
+  width: 100%;
+  min-width: 320px;
+  padding: 50px 100px;
+  cursor: default;
+  @include responsive(1300) {
+    padding: 50px 50px;
+  }
+  @include responsive(500) {
+    padding: 50px 0;
+  }
+}
