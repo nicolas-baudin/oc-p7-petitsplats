@@ -221,8 +221,12 @@ h1 {
   font-family: "Roboto", sans-serif;
 }
 
-.titletime__title, .ingredient__quantity, .ingdesc__description, .filters__list__ul {
+.titletime__title, .ingredient__quantity, .ingdesc__description, .filters__dd__list {
   font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 h1 {
@@ -233,7 +237,7 @@ h1 {
   font-size: 1.25em;
 }
 
-.titletime__title, .titletime__time__value, .searchbar__input, .filters__list__search {
+.titletime__title, .titletime__time__value, .searchbar__input, .filters__dd__btn__search {
   font-size: 1.125em;
 }
 
@@ -255,9 +259,10 @@ a {
 }
 
 .btn {
+  height: 100%;
+  padding: 0 0.75em;
   cursor: pointer;
   border: none;
-  padding: 0.75em;
   color: #ffffff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -265,9 +270,6 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   gap: 10px;
 }
 
@@ -296,6 +298,23 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.scrollbar-y {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+.scrollbar-y::-webkit-scrollbar {
+  width: 9px;
+}
+.scrollbar-y::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-y::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border: transparent;
 }
 
 .color--ing {
@@ -373,18 +392,23 @@ header a:hover > img {
   background-color: #d9d9d9;
 }
 .searchbar__input::-webkit-input-placeholder {
+  color: #000000;
   opacity: 0.4;
 }
 .searchbar__input::-moz-placeholder {
+  color: #000000;
   opacity: 0.4;
 }
 .searchbar__input:-ms-input-placeholder {
+  color: #000000;
   opacity: 0.4;
 }
 .searchbar__input::-ms-input-placeholder {
+  color: #000000;
   opacity: 0.4;
 }
 .searchbar__input::placeholder {
+  color: #000000;
   opacity: 0.4;
 }
 .searchbar__button {
@@ -421,13 +445,28 @@ header a:hover > img {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px 15px;
 }
 .filters__active__category {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 5px;
+}
+.filters__active__btn {
+  height: 35px;
+  max-width: 150px;
   border-radius: 5px;
+}
+.filters__active__text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.filters__active__text[title]::before {
+  content: attr(title);
 }
 .filters__active__icon {
   -webkit-transition: all 200ms;
@@ -437,76 +476,98 @@ header a:hover > img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
-.filters__list {
+.filters__lists {
+  height: 58px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   gap: 20px;
 }
-.filters__list__category {
+.filters__lists .filters__dd {
   border-radius: 5px;
+  max-width: 660px;
+  z-index: 1000;
 }
-.filters__list__category--open {
-  width: 660px;
-  border-radius: 5px 5px 0 0;
+.filters__lists .filters__dd--open {
+  border-radius: 5px 5px 0 0 !important;
 }
-.filters__list__category--open .filters__list__text {
-  opacity: 0.4;
-}
-.filters__list__btn {
-  padding: 1.2em 1em;
-}
-.filters__list__btn__icon {
-  -webkit-transition: all 200ms;
-  transition: all 200ms;
-  pointer-events: none;
-}
-.filters__list__btn:hover > .filters__list__btn__icon {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-.filters__list__btn__search {
-  padding: 0;
-}
-.filters__list__btn__search .filters__list__btn__icon {
-  pointer-events: all;
-  padding: 1.2em 1em;
-}
-.filters__list__btn__search .filters__list__btn__icon:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-.filters__list__text {
-  pointer-events: none;
-}
-.filters__list__ul {
-  position: absolute;
-  width: 660px;
-  border-radius: 0 0 5px 5px;
-  padding: 0 1.2em 1.2em 1.2em;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  row-gap: 10px;
-  color: #ffffff;
-}
-.filters__list__ul .filter {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 26%;
-          flex: 1 0 26%;
-}
-.filters__list__ul li {
+.filters__lists .filters__dd__btn {
+  height: 100%;
+  padding: 0 0.75em;
   cursor: pointer;
-}
-.filters__list__search {
+  border: none;
   color: #ffffff;
-  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.filters__lists .filters__dd__btn__text {
+  pointer-events: none;
+}
+.filters__lists .filters__dd__btn__search {
+  color: #ffffff;
+  padding: 1em 0;
   outline: none;
   border: none;
   background-color: transparent;
   width: 100%;
   height: 100%;
+}
+.filters__lists .filters__dd__btn__search::-webkit-input-placeholder {
+  opacity: 0.4;
+}
+.filters__lists .filters__dd__btn__search::-moz-placeholder {
+  opacity: 0.4;
+}
+.filters__lists .filters__dd__btn__search:-ms-input-placeholder {
+  opacity: 0.4;
+}
+.filters__lists .filters__dd__btn__search::-ms-input-placeholder {
+  opacity: 0.4;
+}
+.filters__lists .filters__dd__btn__search::placeholder {
+  opacity: 0.4;
+}
+.filters__lists .filters__dd__btn__icon {
+  pointer-events: none;
+  -webkit-transition: all 100ms;
+  transition: all 100ms;
+}
+.filters__lists .filters__dd__btn:hover .filters__dd__btn__icon {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.filters__lists .filters__dd__list {
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+}
+.filters__lists .filters__dd__list__content {
+  width: 660px;
+  max-height: 300px;
+  padding: 0 1.2em 1.2em 1.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+  color: #ffffff;
+}
+.filters__lists .filters__dd__list__content__filter {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 26%;
+          flex: 1 0 26%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.filters__lists .filters__dd__list__content__filter[title]::before {
+  content: attr(title);
 }
 
 .recipes {

@@ -14,8 +14,11 @@ h1 {
 
 // FONT-WEIGHT
 
-.titletime__title, .ingredient__quantity, .ingdesc__description, .filters__list__ul {
+.titletime__title, .ingredient__quantity, .ingdesc__description, .filters__dd__list {
     font-weight: 400;
+}
+h1 {
+    font-weight: 700;
 }
 
 // FONT-SIZE
@@ -26,7 +29,7 @@ h1 {
 .titletime__time__icon .activefilters__icon {
     font-size: 1.25em;
 }
-.titletime__title, .titletime__time__value, .searchbar__input, .filters__list__search {
+.titletime__title, .titletime__time__value, .searchbar__input, .filters__dd__btn__search {
     font-size: 1.125em;
 }
 .filters__active__text {

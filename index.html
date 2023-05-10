@@ -24,63 +24,49 @@
     <main id="main">
 
       <form action="search.html" class="searchbar" method="get">
-        <input type="text" class="searchbar__input" name="search" placeholder="Rechercher une recette" required>
+        <input id="searchbar" autocomplete="off" type="text" class="searchbar__input" name="search" placeholder="Rechercher une recette" minlength="3" required>
         <button class="searchbar__button"><span class="searchbar__button__icon fa-solid fa-magnifying-glass"></span></button>
       </form>
 
       <div class="filters">
 
-        <!-- <div class="filters__active">
-          <ul class="filters__active__category color--ing">
-            <li class="btn filters__active__btn">
-              <span class="filters__active__text">Coco</span>
-              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
-            </li>
-            <li class="btn filters__active__btn">
-              <span class="filters__active__text">Citron</span>
-              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
-            </li>
-            <li class="btn filters__active__btn">
-              <span class="filters__active__text">Sucre</span>
-              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
-            </li>
-          </ul>
-          <ul class="filters__active__category color--app">
-            <li class="btn filters__active__btn">
-              <span class="filters__active__text">Blender</span>
-              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
-            </li>
-          </ul>
-          <ul class="filters__active__category color--ute">
-            <li class="btn filters__active__btn">
-              <span class="filters__active__text">Verres</span>
-              <span class="filters__active__icon fa-regular fa-circle-xmark"></span>
-            </li>
-          </ul>
-        </div> -->
+        <div class="filters__active"></div>
 
-        <div class="filters__list">
-          <div class="filters__list__category color--ing">
-            <div class="btn filters__list__btn">
-              <span class="filters__list__text">Ingrédients</span>
-              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+        <div class="filters__lists">
+
+          <div class="filters__dd color--ing">
+            <div class="filters__dd__btn" tabindex="0">
+              <span class="filters__dd__btn__text display-block">Ingrédients</span>
+              <input type="text" name="searching" autocomplete="off" placeholder="Rechercher un ingrédient" class="filters__dd__btn__search display-none">
+              <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
             </div>
-            <ul class="filters__list__ul ingfilters color--ing display-none"></ul>
-          </div>
-          <div class="filters__list__category color--app">
-            <div class="btn filters__list__btn">
-              <span class="filters__list__text">Appareils</span>
-              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+            <div class="filters__dd__list display-none">
+              <ul class="filters__dd__list__content ingfilters color--ing"></ul>
             </div>
-            <ul class="filters__list__ul appfilters color--app display-none"></ul>
           </div>
-          <div class="filters__list__category color--ute">
-            <div class="btn filters__list__btn">
-              <span class="filters__list__text">Ustensiles</span>
-              <span class="filters__list__btn__icon fa-solid fa-angle-down"></span>
+
+          <div class="filters__dd color--app">
+            <div class="filters__dd__btn" tabindex="0">
+              <span class="filters__dd__btn__text display-block">Appareils</span>
+              <input type="text" name="searchapp" autocomplete="off" placeholder="Rechercher un appareil" class="filters__dd__btn__search display-none">
+              <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
             </div>
-            <ul class="filters__list__ul utefilters color--ute display-none"></ul>
+            <div class="filters__dd__list display-none">
+              <ul class="filters__dd__list__content appfilters color--app"></ul>
+            </div>
           </div>
+
+          <div class="filters__dd color--ute">
+            <div class="filters__dd__btn" tabindex="0">
+              <span class="filters__dd__btn__text display-block">Ustensiles</span>
+              <input type="text" name="searchute" autocomplete="off" placeholder="Rechercher un ustensile" class="filters__dd__btn__search display-none">
+              <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
+            </div>
+            <div class="filters__dd__list display-none">
+              <ul class="filters__dd__list__content utefilters color--ute"></ul>
+            </div>
+          </div>
+
         </div>
 
       </div>

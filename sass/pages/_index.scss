@@ -20,6 +20,7 @@ header a:hover > img {
             background-color: lighten($color: #000000, $amount: 85);
         }
         &::placeholder {
+            color: $colour-black;
             opacity: 0.4;
         }
     }
@@ -44,13 +45,26 @@ header a:hover > img {
     display: flex;
     flex-direction: column;
     gap: 15px;
+
     &__active {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 10px 15px;
         &__category {
             display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        &__btn {
+            height: 35px;
+            max-width: 150px;
             border-radius: 5px;
+        }
+        &__text {
+            &[title]::before {
+                content: attr(title);
+            }
+            @include line-ellipsis;
         }
         &__icon {
             transition: all 200ms;
@@ -59,66 +73,66 @@ header a:hover > img {
             }
         }
     }
-    &__list {
+
+    &__lists {
+        height: 58px;
         display: flex;
-        flex-wrap: wrap;
         gap: 20px;
-        &__category {
+        .filters__dd {
             border-radius: 5px;
+            max-width: 660px;
+            z-index: 1000;
             &--open {
-                width: 660px;
-                border-radius: 5px 5px 0 0;
-                .filters__list__text {
-                    opacity: 0.4;
+                border-radius: 5px 5px 0 0 !important;
+            }
+            &__btn {
+                @include btn;
+                &__text {
+                    pointer-events: none;
                 }
-            }
-        }
-        &__btn {
-            padding: 1.2em 1em;
-            &__icon {
-                transition: all 200ms;
-                pointer-events: none;
-            }
-            &:hover > &__icon {
-                transform: scale(1.2);
-            }
-            &__search {
-                padding: 0;
-                & .filters__list__btn__icon {
-                    pointer-events: all;
-                    padding: 1.2em 1em;
-                    &:hover {
-                        transform: scale(1.2);
+                &__search {
+                    color: $colour-white;
+                    padding : 1em 0;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    width: 100%;
+                    height: 100%;
+                    &::placeholder {
+                        opacity: 0.4;
+                    }
+                }
+                &__icon {
+                    pointer-events: none;
+                    transition: all 100ms;
+                }
+                &:hover {
+                    .filters__dd__btn__icon {
+                        transform: scale(1.1);
                     }
                 }
             }
-        }
-        &__text {
-            pointer-events: none;
-        }
-        &__ul {
-            position: absolute;
-            width: 660px;
-            border-radius: 0 0 5px 5px;
-            padding: 0 1.2em 1.2em 1.2em;
-            flex-wrap: wrap;
-            row-gap: 10px;
-            color: $colour-white;
-            & .filter {
-                flex: 1 0 26%;
+            &__list {
+                border-radius: 0 0 5px 5px;
+                overflow: hidden;
+                &__content {
+                    width: 660px;
+                    max-height: 300px;
+                    padding: 0 1.2em 1.2em 1.2em;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    color: $colour-white;
+                    &__filter {
+                        flex: 1 0 26%;
+                        @include line-ellipsis;
+                        &[title]::before {
+                            content: attr(title);
+                        }
+                        cursor: pointer;
+                    }
+                }
             }
-            & li {
-                cursor: pointer;
-            }
-        }
-        &__search {
-            color: $colour-white;
-            padding : 1em;
-            outline: none;
-            border: none;
-            background-color: transparent;
-            width: 100%;
-            height: 100%;
         }
     }
 }

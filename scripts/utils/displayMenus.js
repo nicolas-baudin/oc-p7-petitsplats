@@ -1,73 +1,51 @@
 // Listeners on each sort menu buttons
 (function() {
-    const filtersBtn = document.querySelectorAll(".filters__list__btn");
-    filtersBtn.forEach((btn) => btn.addEventListener("mousedown", showMenus));
+    document.addEventListener("click", function(e) {
+        target = e.target;
+        const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
+        const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
+        if (isDropdownOpen) {
+            let dropdown = document.querySelector(".filters__dd--open");
+            let btn = dropdown.querySelector(".filters__dd__btn");
+            let searchbar = dropdown.querySelector(".filters__dd__btn__search");
+            let list = dropdown.querySelector(".filters__dd__list__content");
+            let filters = dropdown.querySelectorAll(".filters__dd__list__content__filter")
+            if (target !== btn && target !== searchbar && target !== list) {
+                filters.forEach((filter) => {
+                    if (target !== filter) {
+                        displayDropdown(btn);
+                    }  
+                });
+            }
+        }
+        dropdownButtons.forEach((btn) => {
+            if (target == btn) {
+                displayDropdown(btn);
+            }  
+        });
+    });
 })();
 
 /**
  * @function showMenus which open the filters menus.
  */
-function showMenus() {
-    const btn = this;
-    const category = btn.parentElement;
-    const list = category.querySelector(".filters__list__ul");
-    const text = btn.querySelector(".filters__list__text");
-    const icon = btn.querySelector(".filters__list__btn__icon");
-    let placeholder;
-    if (category.classList.contains("color--ing")) {
-        placeholder = "Rechercher un ingrédient";
-    } else if (category.classList.contains("color--app")) {
-        placeholder = "Rechercher un appareil";
+function displayDropdown(btn) {
+    const dropdown = btn.parentElement;
+    const text = dropdown.querySelector(".filters__dd__btn__text");
+    const searchbar = dropdown.querySelector(".filters__dd__btn__search");
+    const icon = dropdown.querySelector(".filters__dd__btn__icon");
+    const list = dropdown.querySelector(".filters__dd__list");
+    if (dropdown.classList.contains("filters__dd--open")) {
+        dropdown.classList.remove("filters__dd--open");
+        text.classList.replace("display-none", "display-block");
+        searchbar.classList.replace("display-block", "display-none");
+        icon.classList.replace("fa-angle-up", "fa-angle-down");
+        list.classList.replace("display-block", "display-none");
     } else {
-        placeholder = "Rechercher un ustensile"
+        dropdown.classList.add("filters__dd--open");
+        text.classList.replace("display-block", "display-none");
+        searchbar.classList.replace("display-none", "display-block");
+        icon.classList.replace("fa-angle-down", "fa-angle-up");
+        list.classList.replace("display-none", "display-block");
     }
-
-    icon.classList.replace("fa-angle-down", "fa-angle-up");
-    
-    btn.classList.replace("filters__list__btn", "filters__list__btn__search");
-    category.classList.replace("filters__list__category", "filters__list__category--open");
-    list.classList.replace("display-none", "display-flex");
-    text.remove();
-    const search = document.createElement("input");
-    search.setAttribute("type", "text");
-    search.setAttribute("name", "search");
-    search.setAttribute("placeholder", placeholder);
-    search.classList.add("filters__list__search");
-    btn.insertBefore(search, btn.firstChild);
-
-    btn.removeEventListener("mousedown", showMenus);
-    icon.addEventListener("click", hideMenus);
-}
-
-/**
- * @function hideMenus which close the filters menus.
- */
-function hideMenus() {
-    const btn = this.parentElement;
-    const category = btn.parentElement;
-    const list = category.querySelector(".filters__list__ul");
-    const search = btn.querySelector(".filters__list__search");
-    const icon = btn.querySelector(".filters__list__btn__icon");
-    let textvalue;
-    if (category.classList.contains("color--ing")) {
-        textvalue = "Ingrédients";
-    } else if (category.classList.contains("color--app")) {
-        textvalue = "Appareils";
-    } else {
-        textvalue = "Ustensiles"
-    }
-
-    icon.classList.replace("fa-angle-up", "fa-angle-down");
-
-    btn.classList.replace("filters__list__btn__search", "filters__list__btn");
-    category.classList.replace("filters__list__category--open", "filters__list__category");
-    list.classList.replace("display-flex", "display-none");
-    search.remove();
-    const text = document.createElement("span");
-    text.classList.add("filters__list__text");
-    text.textContent = textvalue;
-    btn.insertBefore(text, btn.firstChild);
-
-    icon.removeEventListener("click", hideMenus);
-    btn.addEventListener("mousedown", showMenus);
 }
