@@ -518,18 +518,23 @@ header a:hover > img {
   height: 100%;
 }
 .filters__lists .filters__dd__btn__search::-webkit-input-placeholder {
+  color: #ffffff;
   opacity: 0.4;
 }
 .filters__lists .filters__dd__btn__search::-moz-placeholder {
+  color: #ffffff;
   opacity: 0.4;
 }
 .filters__lists .filters__dd__btn__search:-ms-input-placeholder {
+  color: #ffffff;
   opacity: 0.4;
 }
 .filters__lists .filters__dd__btn__search::-ms-input-placeholder {
+  color: #ffffff;
   opacity: 0.4;
 }
 .filters__lists .filters__dd__btn__search::placeholder {
+  color: #ffffff;
   opacity: 0.4;
 }
 .filters__lists .filters__dd__btn__icon {

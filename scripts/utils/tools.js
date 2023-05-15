@@ -1,8 +1,32 @@
-// Modals variables
-let recipesList;
-let ingList = new Array();
-let appList = new Array();
-let uteList = new Array();
+// --- LISTENERS --- //
+
+// Listeners on each sort menu buttons
+(function() {
+  document.addEventListener("click", function(e) {
+      target = e.target;
+      const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
+      const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
+      if (isDropdownOpen) {
+          let dropdown = document.querySelector(".filters__dd--open");
+          let btn = dropdown.querySelector(".filters__dd__btn");
+          let searchbar = dropdown.querySelector(".filters__dd__btn__search");
+          let list = dropdown.querySelector(".filters__dd__list__content");
+          let filters = dropdown.querySelectorAll(".filters__dd__list__content__filter")
+          if (target !== btn && target !== searchbar && target !== list) {
+              filters.forEach((filter) => {
+                  if (target !== filter) {
+                      displayDropdown(btn);
+                  }  
+              });
+          }
+      }
+      dropdownButtons.forEach((btn) => {
+          if (target == btn) {
+              displayDropdown(btn);
+          }  
+      });
+  });
+})();
 
 // Active filters listeners
 document.addEventListener("click", function(e) {
@@ -15,12 +39,41 @@ document.addEventListener("click", function(e) {
 });
 
 // Searchbar listener
-const sb = document.getElementById("searchbar");
-sb.addEventListener("keyup", typing);
+document.addEventListener("change", function(e) {
+  let target = e.target;
+  if (target.classList.contains("searchbar__input")) {
+    searchbarValue = target.value;
+    searchEngine();
+  }
+});
 
-function typing() {
-    console.log(this.value);
+// Dropdown searchbar listener
+document.addEventListener("keyup", function(e) {
+  let target = e.target;
+  if (target.classList.contains("filters__dd__btn__search")) {
+    dropdownTyping(target);
+  }
+});
+
+/**
+ * @function dropdownTyping    will focus the 1st element in a modal.
+ * @param {HTMLElement} element     The modal or the element.
+ */
+function dropdownTyping(element) {
+  let text = element.value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  let dropdown = element.parentElement.parentElement;
+  let list = dropdown.querySelector(".filters__dd__list__content");
+  let filters = list.getElementsByTagName("li");
+  for (let i =0; i < filters.length; i++) {
+    let filter = filters[i].title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+    if (filter.includes(text)) {
+      filters[i].classList.remove("display-none");
+    } else {
+      filters[i].classList.add("display-none");
+    }
+  }
 }
+
 // window.addEventListener("keydown", function(e){
 //     if (e.key === "Escape") {
 //         if (modalForm && modalForm.classList.contains("display-block")) {
@@ -30,6 +83,8 @@ function typing() {
 //         }
 //     }
 // });
+
+// --- Global tools --- //
 
 /**
  * @function focusFirstElementIn    will focus the 1st element in a modal.

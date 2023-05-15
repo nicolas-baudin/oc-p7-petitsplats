@@ -3,11 +3,11 @@
  * @param {object} recipes   List of filtered recipes.
  */
 function filtersFactory(recipes) {
-    
+
     let i = 0;
-    ingList = [];
-    appList = [];
-    uteList = [];
+    let ingList = [];
+    let appList = [];
+    let uteList = [];
     const ingFilters = document.querySelector(".ingfilters");
     const appFilters = document.querySelector(".appfilters");
     const uteFilters = document.querySelector(".utefilters");
@@ -61,7 +61,7 @@ function filtersFactory(recipes) {
     
     // Add 2 emptyspaces to avoid wrapped elements to take all the width
     // It keep the 3 elements ratio for a single element on a line
-    const emptyElement = document.createElement("li");
+    const emptyElement = document.createElement("span");
     emptyElement.classList.add("filters__dd__list__content__filter");
     ingFilters.appendChild(emptyElement.cloneNode(true));
     ingFilters.appendChild(emptyElement.cloneNode(true));
@@ -77,12 +77,15 @@ function filterAdd(node) {
     if (node.parentElement.classList.contains("ingfilters")) {
         category = "ing";
         order = 0;
+        ingTags.push(node.title);
     } else if (node.parentElement.classList.contains("appfilters")) {
         category = "app";
         order = 1;
+        appTags.push(node.title);
     } else if (node.parentElement.classList.contains("utefilters")) {
         category = "ute";
         order = 2;
+        uteTags.push(node.title);
     }
 
     let ul = document.getElementsByClassName("filters__active__category--" + category)[0];
@@ -90,7 +93,7 @@ function filterAdd(node) {
         ul = document.createElement("ul");
         ul.classList.add("filters__active__category");
         ul.classList.add("filters__active__category--" + category);
-        const parent = document.getElementsByClassName("filters__active")[0];
+        const parent = document.querySelector(".filters__active");
         parent.insertBefore(ul, parent.children[order]);
     }
 
@@ -108,13 +111,39 @@ function filterAdd(node) {
         icon.classList.add(...iconClasses);
         li.appendChild(icon);
     ul.appendChild(li);
+
+    const dropdownsearch = node.parentElement.parentElement.parentElement.querySelector(".filters__dd__btn__search");
+    dropdownsearch.value = "";
+    dropdownTyping(dropdownsearch);
+    dropdownsearch.focus();
+
+    searchEngine();
 }
 
 function filterRemove(node) {
     const parent = node.parentElement;
     const category = parent.parentElement;
+    const title = node.previousSibling.title;
     parent.remove();
     if (!category.hasChildNodes()) {
         category.remove();
     }
+
+    if (category.classList.contains("filters__active__category--ing")) {
+        let index = ingTags.indexOf(title);
+        if (index !== -1) {
+            ingTags.splice(index, 1);
+        }
+    } else if (category.classList.contains("filters__active__category--app")) {
+        let index = appTags.indexOf(title);
+        if (index !== -1) {
+            appTags.splice(index, 1);
+        }
+    } else if (category.classList.contains("filters__active__category--ute")) {
+        let index = uteTags.indexOf(title);
+        if (index !== -1) {
+            uteTags.splice(index, 1);
+        }
+    }
+    searchEngine();
 }

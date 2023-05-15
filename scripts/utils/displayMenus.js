@@ -1,31 +1,3 @@
-// Listeners on each sort menu buttons
-(function() {
-    document.addEventListener("click", function(e) {
-        target = e.target;
-        const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
-        const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
-        if (isDropdownOpen) {
-            let dropdown = document.querySelector(".filters__dd--open");
-            let btn = dropdown.querySelector(".filters__dd__btn");
-            let searchbar = dropdown.querySelector(".filters__dd__btn__search");
-            let list = dropdown.querySelector(".filters__dd__list__content");
-            let filters = dropdown.querySelectorAll(".filters__dd__list__content__filter")
-            if (target !== btn && target !== searchbar && target !== list) {
-                filters.forEach((filter) => {
-                    if (target !== filter) {
-                        displayDropdown(btn);
-                    }  
-                });
-            }
-        }
-        dropdownButtons.forEach((btn) => {
-            if (target == btn) {
-                displayDropdown(btn);
-            }  
-        });
-    });
-})();
-
 /**
  * @function showMenus which open the filters menus.
  */
