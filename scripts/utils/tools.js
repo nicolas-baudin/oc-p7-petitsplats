@@ -4,7 +4,6 @@
 (function() {
   document.addEventListener("click", function(e) {
       target = e.target;
-      console.log(target);
       const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
       const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
       if (isDropdownOpen) {
