@@ -23,7 +23,6 @@ function searchEngine() {
             }
         }
     }
-    console.log(filteredRecipes);
     displayRecipes(filteredRecipes);
 }
 
