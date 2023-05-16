@@ -4,6 +4,7 @@
 (function() {
   document.addEventListener("click", function(e) {
       target = e.target;
+      console.log(target);
       const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
       const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
       if (isDropdownOpen) {
@@ -13,11 +14,7 @@
           let list = dropdown.querySelector(".filters__dd__list__content");
           let filters = dropdown.querySelectorAll(".filters__dd__list__content__filter")
           if (target !== btn && target !== searchbar && target !== list) {
-              filters.forEach((filter) => {
-                  if (target !== filter) {
-                      displayDropdown(btn);
-                  }  
-              });
+            displayDropdown(btn);
           }
       }
       dropdownButtons.forEach((btn) => {
