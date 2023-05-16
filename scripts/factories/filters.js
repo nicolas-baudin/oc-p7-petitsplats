@@ -12,15 +12,19 @@ function filtersFactory(recipes) {
     const appFilters = document.querySelector(".appfilters");
     const uteFilters = document.querySelector(".utefilters");
 
+    removeAllChilds(ingFilters);
+    removeAllChilds(appFilters);
+    removeAllChilds(uteFilters);
+
     recipes.forEach((recipe) => {
         const {ingredients, appliance, utensils} = recipe;
         ingredients.forEach((e) => {
-            if (ingList.indexOf(e.ingredient) === -1) ingList.push(e.ingredient);
+            if (ingList.indexOf(e.ingredient) === -1 && !ingTags.includes(e.ingredient)) ingList.push(e.ingredient);
         })
-        if (appList.indexOf(appliance) === -1) appList.push(appliance);
+        if (appList.indexOf(appliance) === -1 && !appTags.includes(appliance)) appList.push(appliance);
         i = 0;
         while (i < utensils.length) {
-            if (uteList.indexOf(utensils[i]) === -1) uteList.push(utensils[i]);
+            if (uteList.indexOf(utensils[i]) === -1 && !uteTags.includes(utensils[i])) uteList.push(utensils[i]);
             i++;
         }
     });
