@@ -14,6 +14,7 @@ init();
  */
 async function displayRecipes(recipes) {
     const recipesSection = document.querySelector(".recipes");
+    removeAllChilds(recipesSection);
     recipes.forEach((recipe) => {
         const recipeElement = recipeFactory(recipe);
         recipesSection.appendChild(recipeElement);
@@ -24,14 +25,5 @@ async function displayRecipes(recipes) {
     emptyElement.classList.add("recipe");
     recipesSection.appendChild(emptyElement.cloneNode(true));
     recipesSection.appendChild(emptyElement.cloneNode(true));
-    displayFilters(recipes);
-}
-
-/**
- * @async
- * @function displayFilters   who loop to display an element for each recipe in the object in parameter.
- * @param {object} recipes    Object with all recipes.
- */
-async function displayFilters(recipes) {
     filtersFactory(recipes);
 }

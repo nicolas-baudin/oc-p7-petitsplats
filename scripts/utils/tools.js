@@ -42,7 +42,7 @@ document.addEventListener("click", function(e) {
 document.addEventListener("change", function(e) {
   let target = e.target;
   if (target.classList.contains("searchbar__input")) {
-    searchbarValue = target.value;
+    searchbarValue = target.value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
     searchEngine();
   }
 });
@@ -64,13 +64,19 @@ function dropdownTyping(element) {
   let dropdown = element.parentElement.parentElement;
   let list = dropdown.querySelector(".filters__dd__list__content");
   let filters = list.getElementsByTagName("li");
-  for (let i =0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     let filter = filters[i].title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
     if (filter.includes(text)) {
       filters[i].classList.remove("display-none");
     } else {
       filters[i].classList.add("display-none");
     }
+  }
+}
+
+function removeAllChilds(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
   }
 }
 
