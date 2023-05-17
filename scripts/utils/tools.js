@@ -70,23 +70,45 @@ function dropdownTyping(element) {
   }
 }
 
+/**
+ * @function removeAllChilds who delete all childs in HTML element.
+ * @param {HTMLElement} parent The HTML element.
+ */
 function removeAllChilds(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
 
-// window.addEventListener("keydown", function(e){
-//     if (e.key === "Escape") {
-//         if (modalForm && modalForm.classList.contains("display-block")) {
-//             closeForm();
-//         } else if (modalLB) {
-//             closeLB();
-//         }
-//     }
-// });
+/**
+ * @function filterTags will push the recipe to the filtered array if all tags matches
+ * @param {Object} recipe The recipe.
+ */
+function filterTags(recipe) {
+  let {ingredients, appliance, utensils} = recipe;
+  let tags = ingTags.concat(appTags, uteTags);
+  let recipeArray = [];
+  ingredients.forEach((e) => { recipeArray.push(e.ingredient); });
+  recipeArray.push(appliance);
+  utensils.forEach((e) => { recipeArray.push(e); });
+  if (checkTags(tags, recipeArray)) filteredRecipes.push(recipe);
+}
 
-// --- Global tools --- //
+/**
+ * @function checkTags who compare selected tags to all recipe values.
+ * @param {Array} tagsArray 
+ * @param {Array} recipeArray 
+ * @returns {boolean} true if all tags matches atleast 1 value.
+ */
+function checkTags(tagsArray, recipeArray) {
+  let allTagsOk = true;
+      if (tagsArray.length !== 0) {
+          tagsArray.forEach((tag) => {
+              if (!recipeArray.includes(tag)) allTagsOk = false;
+          });
+      }
+  return(allTagsOk);
+}
 
 /**
  * @function focusFirstElementIn    will focus the 1st element in a modal.
