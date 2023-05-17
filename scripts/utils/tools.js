@@ -1,8 +1,15 @@
+// --- GLOBAL VAR --- //
+
+let searchbarValue;
+let ingTags = [];
+let appTags = [];
+let uteTags = [];
+let filteredRecipes = [];
+
 // --- LISTENERS --- //
 
 // Listeners on each sort menu buttons
-(function() {
-  document.addEventListener("click", function(e) {
+document.addEventListener("click", function(e) {
       target = e.target;
       const dropdownButtons = document.querySelectorAll(".filters__dd__btn");
       const isDropdownOpen = document.querySelector(".filters__dd--open") !== null;
@@ -11,7 +18,6 @@
           let btn = dropdown.querySelector(".filters__dd__btn");
           let searchbar = dropdown.querySelector(".filters__dd__btn__search");
           let list = dropdown.querySelector(".filters__dd__list__content");
-          let filters = dropdown.querySelectorAll(".filters__dd__list__content__filter")
           if (target !== btn && target !== searchbar && target !== list) {
             displayDropdown(btn);
           }
@@ -22,7 +28,6 @@
           }  
       });
   });
-})();
 
 // Active filters listeners
 document.addEventListener("click", function(e) {
@@ -38,8 +43,8 @@ document.addEventListener("click", function(e) {
 document.addEventListener("change", function(e) {
   let target = e.target;
   if (target.classList.contains("searchbar__input")) {
-    searchbarValue = target.value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
-    searchEngine();
+    searchbarValue = completeNormalize(target.value);
+    checkResearch();
   }
 });
 
@@ -51,22 +56,42 @@ document.addEventListener("keyup", function(e) {
   }
 });
 
+// Keyboard listeners
+document.addEventListener("keydown", function(e) {
+  let target = e.target;
+  let isEnterPressed = e.key === "Enter";
+    if (isEnterPressed) {
+      console.log("ENTER");
+    }
+});
+
+
+
 /**
- * @function dropdownTyping    will focus the 1st element in a modal.
- * @param {HTMLElement} element     The modal or the element.
+ * @function dropdownTyping    will update the dropdown values.
+ * @param {HTMLElement} element     The input listened.
  */
 function dropdownTyping(element) {
-  let text = element.value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  let text = completeNormalize(element.value);
   let dropdown = element.parentElement.parentElement;
   let list = dropdown.querySelector(".filters__dd__list__content");
   let filters = list.getElementsByTagName("li");
   for (let i = 0; i < filters.length; i++) {
-    let filter = filters[i].title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+    let filter = completeNormalize(filters[i].title);
     if (filter.includes(text)) {
       filters[i].classList.remove("display-none");
     } else {
       filters[i].classList.add("display-none");
     }
+  }
+}
+
+/**
+ * @function checkResearch will check if the searchbar contains 3 characters or more.
+ */
+function checkResearch() {
+  if (searchbarValue.length >= 3) {
+    searchEngine();
   }
 }
 
@@ -120,6 +145,11 @@ function focusFirstElementIn(element) {
     firstFocusableElement.focus();
 }
 
+// Dropdown trap focus
+document.querySelectorAll(".filters__dd").forEach((dd) => {
+  trapFocusIn(dd);
+});
+
 /**
  * @function trapFocusIn        will add a container listener to trp the focus in it.
  * @param {HTMLElement} element The container.
@@ -149,4 +179,13 @@ function trapFocusIn(element) {
           }
         }
     }
+}
+
+/**
+ * @function completeNormalize who lowercase, normalize and remove accents for a string.
+ * @param {string} value the value to normalize
+ * @returns normalized value.
+ */
+function completeNormalize(value) {
+  return(value.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, ''));
 }

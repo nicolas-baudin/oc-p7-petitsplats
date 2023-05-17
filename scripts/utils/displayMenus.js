@@ -1,5 +1,6 @@
 /**
- * @function showMenus which open the filters menus.
+ * @function displayDropdown which open and close a dropdown.
+ * @param {HTMLElement} btn The dropdown button.
  */
 function displayDropdown(btn) {
     const dropdown = btn.parentElement;

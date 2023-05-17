@@ -14,7 +14,7 @@
 
     <header>
 
-      <a href="index.html">
+      <a href="index.html" tabindex="0">
         <img src="public/img/logo.svg" class="logo" alt="Les petits plats home page" />
         <h1>Les petits plats</h1>
       </a>
@@ -25,7 +25,7 @@
 
       <div class="searchbar">
         <input id="searchbar" autocomplete="off" type="text" class="searchbar__input" name="search" placeholder="Rechercher une recette" minlength="3" required>
-        <button class="searchbar__button" onclick="searchEngine()"><span class="searchbar__button__icon fa-solid fa-magnifying-glass"></span></button>
+        <button class="searchbar__button" onclick="checkResearch()"><span class="searchbar__button__icon fa-solid fa-magnifying-glass"></span></button>
       </div>
 
       <div class="filters">
@@ -34,8 +34,8 @@
 
         <div class="filters__lists">
 
-          <div class="filters__dd color--ing">
-            <div class="filters__dd__btn" tabindex="0">
+          <div class="filters__dd color--ing" tabindex="0">
+            <div class="filters__dd__btn">
               <span class="filters__dd__btn__text display-block">Ingrédients</span>
               <input type="text" name="searching" autocomplete="off" placeholder="Rechercher un ingrédient" class="filters__dd__btn__search display-none">
               <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
@@ -45,8 +45,8 @@
             </div>
           </div>
 
-          <div class="filters__dd color--app">
-            <div class="filters__dd__btn" tabindex="0">
+          <div class="filters__dd color--app" tabindex="0">
+            <div class="filters__dd__btn">
               <span class="filters__dd__btn__text display-block">Appareils</span>
               <input type="text" name="searchapp" autocomplete="off" placeholder="Rechercher un appareil" class="filters__dd__btn__search display-none">
               <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
@@ -56,8 +56,8 @@
             </div>
           </div>
 
-          <div class="filters__dd color--ute">
-            <div class="filters__dd__btn" tabindex="0">
+          <div class="filters__dd color--ute" tabindex="0">
+            <div class="filters__dd__btn">
               <span class="filters__dd__btn__text display-block">Ustensiles</span>
               <input type="text" name="searchute" autocomplete="off" placeholder="Rechercher un ustensile" class="filters__dd__btn__search display-none">
               <span class="filters__dd__btn__icon fa-solid fa-angle-down"></span>
@@ -78,11 +78,11 @@
     <script src="data/recipes.js"></script>
     <script src="scripts/utils/tools.js"></script>
     <script src="scripts/utils/searchengine.js"></script>
+    <script src="scripts/utils/displayMenus.js"></script>
     <script src="scripts/factories/recipes.js"></script>
     <script src="scripts/factories/filters.js"></script>
     <script src="scripts/factories/emptyResults.js"></script>
     <script src="scripts/pages/index.js"></script>
-    <script src="scripts/utils/displayMenus.js"></script>
 
   </body>
 </html>
