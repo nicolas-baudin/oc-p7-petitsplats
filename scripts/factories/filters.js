@@ -29,50 +29,50 @@ function filtersFactory(recipes) {
         }
     });
 
-    i = 0;
-    while (i < ingList.length) {
-        const ingredient = document.createElement("li");
-        ingredient.classList.add("filters__dd__list__content__filter");
-        ingredient.setAttribute("title", ingList[i]);
-        ingFilters.appendChild(ingredient);
-        i++;
-        if (i > 30) {
-            ingFilters.classList.add("scrollbar-y");
-        }
-    }
-    i = 0;
-    while (i < appList.length) {
-        const appliance = document.createElement("li");
-        appliance.classList.add("filters__dd__list__content__filter");
-        appliance.setAttribute("title", appList[i]);
-        appFilters.appendChild(appliance);
-        i++;
-        if (i > 30) {
-            appFilters.classList.add("scrollbar-y");
-        }
-    }
-    i = 0;
-    while (i < uteList.length) {
-        const utensil = document.createElement("li");
-        utensil.classList.add("filters__dd__list__content__filter");
-        utensil.setAttribute("title", uteList[i]);
-        uteFilters.appendChild(utensil);
-        i++;
-        if (i > 30) {
-            uteFilters.classList.add("scrollbar-y");
-        }
-    }
-    
-    // Add 2 emptyspaces to avoid wrapped elements to take all the width
-    // It keep the 3 elements ratio for a single element on a line
     const emptyElement = document.createElement("span");
     emptyElement.classList.add("filters__dd__list__content__filter");
-    ingFilters.appendChild(emptyElement.cloneNode(true));
-    ingFilters.appendChild(emptyElement.cloneNode(true));
-    appFilters.appendChild(emptyElement.cloneNode(true));
-    appFilters.appendChild(emptyElement.cloneNode(true));
-    uteFilters.appendChild(emptyElement.cloneNode(true));
-    uteFilters.appendChild(emptyElement.cloneNode(true));
+    if (ingList.length !== 0) {
+        i = 0;
+        while (i < ingList.length) {
+            const ingredient = document.createElement("li");
+            ingredient.classList.add("filters__dd__list__content__filter");
+            ingredient.setAttribute("title", ingList[i]);
+            ingFilters.appendChild(ingredient);
+            i++;
+        }
+        ingFilters.appendChild(emptyElement.cloneNode(true));
+        ingFilters.appendChild(emptyElement.cloneNode(true));
+    } else {
+        emptyFilter(ingFilters);
+    }
+    if (appList.length !== 0) {
+        i = 0;
+        while (i < appList.length) {
+            const appliance = document.createElement("li");
+            appliance.classList.add("filters__dd__list__content__filter");
+            appliance.setAttribute("title", appList[i]);
+            appFilters.appendChild(appliance);
+            i++;
+        }
+        appFilters.appendChild(emptyElement.cloneNode(true));
+        appFilters.appendChild(emptyElement.cloneNode(true));
+    } else {
+        emptyFilter(appFilters);
+    }
+    if (uteList.length !== 0) {
+        i = 0;
+        while (i < uteList.length) {
+            const utensil = document.createElement("li");
+            utensil.classList.add("filters__dd__list__content__filter");
+            utensil.setAttribute("title", uteList[i]);
+            uteFilters.appendChild(utensil);
+            i++;
+        }
+        uteFilters.appendChild(emptyElement.cloneNode(true));
+        uteFilters.appendChild(emptyElement.cloneNode(true));
+    } else {
+        emptyFilter(uteFilters);
+    }
 }
 
 function filterAdd(node) {

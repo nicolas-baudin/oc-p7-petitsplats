@@ -192,7 +192,7 @@ td, th {
 
 body {
   width: 100%;
-  min-width: 320px;
+  min-width: 400px;
   padding: 50px 100px;
   cursor: default;
 }
@@ -447,6 +447,11 @@ header a:hover > img {
       flex-wrap: wrap;
   gap: 10px 15px;
 }
+@media screen and (max-width: 500px) {
+  .filters__active {
+    padding: 0 5px;
+  }
+}
 .filters__active__category {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -483,13 +488,25 @@ header a:hover > img {
   display: flex;
   gap: 20px;
 }
+@media screen and (max-width: 500px) {
+  .filters__lists {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    gap: 10px;
+  }
+}
 .filters__lists .filters__dd {
   border-radius: 5px;
+  overflow: hidden;
   max-width: 660px;
   z-index: 1000;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 .filters__lists .filters__dd--open {
-  border-radius: 5px 5px 0 0 !important;
+  position: absolute;
+  z-index: 2000;
 }
 .filters__lists .filters__dd__btn {
   height: 100%;
@@ -547,8 +564,8 @@ header a:hover > img {
           transform: scale(1.1);
 }
 .filters__lists .filters__dd__list {
-  border-radius: 0 0 5px 5px;
-  overflow: hidden;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 .filters__lists .filters__dd__list__content {
   width: 660px;
@@ -561,6 +578,30 @@ header a:hover > img {
       flex-wrap: wrap;
   gap: 10px;
   color: #ffffff;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+.filters__lists .filters__dd__list__content::-webkit-scrollbar {
+  width: 9px;
+}
+.filters__lists .filters__dd__list__content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.filters__lists .filters__dd__list__content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border: transparent;
+}
+@media screen and (max-width: 760px) {
+  .filters__lists .filters__dd__list__content {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .filters__lists .filters__dd__list__content {
+    max-height: 450px;
+  }
 }
 .filters__lists .filters__dd__list__content__filter {
   -webkit-box-flex: 1;
@@ -573,6 +614,12 @@ header a:hover > img {
 }
 .filters__lists .filters__dd__list__content__filter[title]::before {
   content: attr(title);
+}
+@media screen and (max-width: 760px) {
+  .filters__lists .filters__dd__list__content__filter {
+    -ms-flex-preferred-size: 34%;
+        flex-basis: 34%;
+  }
 }
 
 .recipes {
@@ -596,13 +643,13 @@ header a:hover > img {
           flex: 1 0 26%;
   overflow: hidden;
 }
-@media screen and (max-width: 1314px) {
+@media screen and (max-width: 1515px) {
   .recipes .recipe {
     -ms-flex-preferred-size: 34%;
         flex-basis: 34%;
   }
 }
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 965px) {
   .recipes .recipe {
     -ms-flex-preferred-size: 51%;
         flex-basis: 51%;

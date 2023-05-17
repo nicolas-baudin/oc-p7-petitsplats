@@ -45,11 +45,13 @@ header a:hover > img {
     display: flex;
     flex-direction: column;
     gap: 15px;
-
     &__active {
         display: flex;
         flex-wrap: wrap;
         gap: 10px 15px;
+        @include responsive(500) {
+            padding: 0 5px;
+        }
         &__category {
             display: flex;
             flex-wrap: wrap;
@@ -78,12 +80,19 @@ header a:hover > img {
         height: 58px;
         display: flex;
         gap: 20px;
+        @include responsive(500) {
+            justify-content: center;
+            gap: 10px;
+        }
         .filters__dd {
             border-radius: 5px;
+            overflow: hidden;
             max-width: 660px;
             z-index: 1000;
+            transition: all 300ms;
             &--open {
-                border-radius: 5px 5px 0 0 !important;
+                position: absolute;
+                z-index: 2000;
             }
             &__btn {
                 @include btn;
@@ -114,8 +123,7 @@ header a:hover > img {
                 }
             }
             &__list {
-                border-radius: 0 0 5px 5px;
-                overflow: hidden;
+                transition: all 300ms;
                 &__content {
                     width: 660px;
                     max-height: 300px;
@@ -124,6 +132,26 @@ header a:hover > img {
                     flex-wrap: wrap;
                     gap: 10px;
                     color: $colour-white;
+                    overflow-y: auto;
+                    scrollbar-width: thin;
+                    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+                    &::-webkit-scrollbar {
+                        width: 9px;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgba(255, 255, 255, 0.3);
+                        border-radius: 20px;
+                        border: transparent;
+                    }
+                    @include responsive(760) {
+                        width : 400px;
+                    }
+                    @include responsive(500) {
+                        max-height: 450px;
+                    }
                     &__filter {
                         flex: 1 0 26%;
                         @include line-ellipsis;
@@ -131,6 +159,9 @@ header a:hover > img {
                             content: attr(title);
                         }
                         cursor: pointer;
+                        @include responsive(760) {
+                            flex-basis: 34%;
+                        }
                     }
                 }
             }
@@ -147,10 +178,10 @@ header a:hover > img {
         flex-direction: column;
         flex: 1 0 26%;
         overflow: hidden;
-        @include responsive(1314) {
+        @include responsive(1515) {
             flex-basis: 34%;
         }
-        @include responsive(860) {
+        @include responsive(965) {
             flex-basis: 51%;
         }
         &picture {
@@ -185,9 +216,6 @@ header a:hover > img {
                 &__child {
                     flex: 1 0 34%;
                 }
-                // .ingdesc__description {
-                //     @include text-ellipsis;
-                // }
             }
         }
     }
