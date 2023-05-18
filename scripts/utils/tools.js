@@ -4,6 +4,7 @@ let searchbarValue = "";
 let ingTags = [];
 let appTags = [];
 let uteTags = [];
+let allTags = [];
 let filteredRecipes = [];
 
 // --- LISTENERS --- //
@@ -121,12 +122,11 @@ function removeAllChilds(parent) {
  */
 function filterTags(recipe) {
   let {ingredients, appliance, utensils} = recipe;
-  let tags = ingTags.concat(appTags, uteTags);
   let recipeArray = [];
   ingredients.forEach((e) => { recipeArray.push(e.ingredient); });
   recipeArray.push(appliance);
   utensils.forEach((e) => { recipeArray.push(e); });
-  if (checkTags(tags, recipeArray)) filteredRecipes.push(recipe);
+  if (checkTags(allTags, recipeArray)) filteredRecipes.push(recipe);
 }
 
 /**
