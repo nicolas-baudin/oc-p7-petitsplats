@@ -66,6 +66,8 @@ document.addEventListener("keydown", function(e) {
         displayDropdown(btn);
       } else if (target.classList.contains("filters__dd__list__content__filter")) {
         filterAdd(target);
+      } else if (target.classList.contains("filters__active__icon")) {
+        filterRemove(target);
       }
     }
 });
