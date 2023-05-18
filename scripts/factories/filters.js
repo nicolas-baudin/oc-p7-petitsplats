@@ -110,6 +110,7 @@ function filterAdd(node) {
         li.appendChild(text);
         let icon = document.createElement("span");
         icon.classList.add(...iconClasses);
+        icon.setAttribute("tabindex", 0);
         li.appendChild(icon);
     ul.appendChild(li);
 
