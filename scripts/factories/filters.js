@@ -30,14 +30,15 @@ function filtersFactory(recipes) {
     });
 
     const emptyElement = document.createElement("span");
-    emptyElement.classList.add("filters__dd__list__content__filter");
+    emptyElement.classList.add("filters__dd__list__content__filter--empty");
+    const li = document.createElement("li");
+    li.classList.add("filters__dd__list__content__filter");
+    li.setAttribute("tabindex", 0);
     if (ingList.length !== 0) {
         i = 0;
         while (i < ingList.length) {
-            const ingredient = document.createElement("li");
-            ingredient.classList.add("filters__dd__list__content__filter");
-            ingredient.setAttribute("title", ingList[i]);
-            ingFilters.appendChild(ingredient);
+            li.setAttribute("title", ingList[i]);
+            ingFilters.appendChild(li.cloneNode(true));
             i++;
         }
         ingFilters.appendChild(emptyElement.cloneNode(true));
@@ -48,10 +49,8 @@ function filtersFactory(recipes) {
     if (appList.length !== 0) {
         i = 0;
         while (i < appList.length) {
-            const appliance = document.createElement("li");
-            appliance.classList.add("filters__dd__list__content__filter");
-            appliance.setAttribute("title", appList[i]);
-            appFilters.appendChild(appliance);
+            li.setAttribute("title", appList[i]);
+            appFilters.appendChild(li.cloneNode(true));
             i++;
         }
         appFilters.appendChild(emptyElement.cloneNode(true));
@@ -62,10 +61,8 @@ function filtersFactory(recipes) {
     if (uteList.length !== 0) {
         i = 0;
         while (i < uteList.length) {
-            const utensil = document.createElement("li");
-            utensil.classList.add("filters__dd__list__content__filter");
-            utensil.setAttribute("title", uteList[i]);
-            uteFilters.appendChild(utensil);
+            li.setAttribute("title", uteList[i]);
+            uteFilters.appendChild(li.cloneNode(true));
             i++;
         }
         uteFilters.appendChild(emptyElement.cloneNode(true));
@@ -116,10 +113,11 @@ function filterAdd(node) {
         li.appendChild(icon);
     ul.appendChild(li);
 
-    const dropdownsearch = node.parentElement.parentElement.parentElement.querySelector(".filters__dd__btn__search");
-    dropdownsearch.value = "";
-    dropdownTyping(dropdownsearch);
-    dropdownsearch.focus();
+    const dropdown = node.parentElement.parentElement.parentElement;
+    const searchbar = dropdown.querySelector(".filters__dd__btn__search");
+    searchbar.value = "";
+    dropdownTyping(searchbar);
+    searchbar.focus();
 
     searchEngine();
 }
