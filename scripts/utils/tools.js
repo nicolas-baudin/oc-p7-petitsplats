@@ -100,7 +100,7 @@ function dropdownTyping(element) {
  * @function checkResearch will check if the searchbar contains 3 characters or more.
  */
 function checkResearch() {
-  if (searchbarValue.length >= 3) {
+  if (searchbarValue.length == 0 || searchbarValue.length >= 3) {
     searchEngine();
   }
 }
