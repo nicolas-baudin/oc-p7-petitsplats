@@ -1,6 +1,6 @@
 // --- GLOBAL VAR --- //
 
-let searchbarValue;
+let searchbarValue = "";
 let ingTags = [];
 let appTags = [];
 let uteTags = [];
@@ -61,11 +61,19 @@ document.addEventListener("keydown", function(e) {
   let target = e.target;
   let isEnterPressed = e.key === "Enter";
     if (isEnterPressed) {
-      console.log("ENTER");
+      if (target.classList.contains("filters__dd")) {
+        const btn = target.querySelector(".filters__dd__btn");
+        displayDropdown(btn);
+      } else if (target.classList.contains("filters__dd__list__content__filter")) {
+        filterAdd(target);
+      }
     }
 });
 
-
+// Add the dropdown trap focus listeners
+document.querySelectorAll(".filters__dd").forEach((dd) => {
+  trapFocusIn(dd);
+});
 
 /**
  * @function dropdownTyping    will update the dropdown values.
@@ -136,8 +144,8 @@ function checkTags(tagsArray, recipeArray) {
 }
 
 /**
- * @function focusFirstElementIn    will focus the 1st element in a modal.
- * @param {HTMLElement} element     The modal or the element.
+ * @function focusFirstElementIn    will focus the 1st element in a container.
+ * @param {HTMLElement} element     The container.
  */
 function focusFirstElementIn(element) {
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -145,13 +153,8 @@ function focusFirstElementIn(element) {
     firstFocusableElement.focus();
 }
 
-// Dropdown trap focus
-document.querySelectorAll(".filters__dd").forEach((dd) => {
-  trapFocusIn(dd);
-});
-
 /**
- * @function trapFocusIn        will add a container listener to trp the focus in it.
+ * @function trapFocusIn        will trap tab into a container.
  * @param {HTMLElement} element The container.
  */
 function trapFocusIn(element) {
@@ -164,9 +167,13 @@ function trapFocusIn(element) {
         const firstFocusableElement = element.querySelectorAll(focusableElements)[0];
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
         let isTabPressed = e.key === "Tab";
-        if (!isTabPressed) {
+        let isEchapPressed = e.key === "Escape";
+        if (isEchapPressed) {
+          const btn = element.querySelector(".filters__dd__btn");
+          displayDropdown(btn);
+        } else if (!isTabPressed) {
           return;
-        }
+        } 
         if (e.shiftKey) {
           if (document.activeElement === firstFocusableElement) {
             lastFocusableElement.focus();

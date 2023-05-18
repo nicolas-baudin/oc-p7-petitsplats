@@ -30,7 +30,7 @@ function filtersFactory(recipes) {
     });
 
     const emptyElement = document.createElement("span");
-    emptyElement.classList.add("filters__dd__list__content__filter");
+    emptyElement.classList.add("filters__dd__list__content__filter--empty");
     const li = document.createElement("li");
     li.classList.add("filters__dd__list__content__filter");
     li.setAttribute("tabindex", 0);
@@ -117,7 +117,7 @@ function filterAdd(node) {
     const searchbar = dropdown.querySelector(".filters__dd__btn__search");
     searchbar.value = "";
     dropdownTyping(searchbar);
-    dropdown.focus();
+    searchbar.focus();
 
     searchEngine();
 }

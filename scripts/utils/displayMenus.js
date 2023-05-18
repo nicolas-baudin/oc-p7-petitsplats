@@ -20,5 +20,6 @@ function displayDropdown(btn) {
         searchbar.classList.replace("display-none", "display-block");
         icon.classList.replace("fa-angle-down", "fa-angle-up");
         list.classList.replace("display-none", "display-block");
+        searchbar.focus();
     }
 }
