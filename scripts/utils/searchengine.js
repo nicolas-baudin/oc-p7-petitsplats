@@ -1,10 +1,3 @@
-// --- Global variables --- //
-let searchbarValue;
-let ingTags = [];
-let appTags = [];
-let uteTags = [];
-let filteredRecipes = [];
-
 function searchEngine() {
     filteredRecipes = [];
     for (let i = 0; i < recipes.length; i++) {
