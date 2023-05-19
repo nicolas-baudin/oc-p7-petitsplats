@@ -1,19 +1,15 @@
 function searchEngine() {
     filteredRecipes = [];
-    recipes.forEach((recipe) => {
-        let {name, ingredients, description} = recipe;
-        let title = completeNormalize(name);
-        let desc = completeNormalize(description);
-        if (!searchbarValue || title.includes(searchbarValue) || desc.includes(searchbarValue)) {
-            filterTags(recipe);
-        } else {
-            ingredients.forEach((e) => {
-                let ing = completeNormalize(e.ingredient);
-                if (ing.includes(searchbarValue)) {
-                    filterTags(recipe);
-                }
-            });
-        }
-    });
+    let searchbarRecipes;
+    if (!searchbarValue) {
+        searchbarRecipes = recipes;
+    } else {
+        const nameFilter = recipes.filter(function(r) { return completeNormalize(r.name).includes(searchbarValue); });
+        const descFilter = recipes.filter(function(r) { return completeNormalize(r.description).includes(searchbarValue); });
+        const ingFilter = recipes.filter(function(r) { return r.ingredients.some(i => completeNormalize(i.ingredient).includes(searchbarValue))});
+        searchbarRecipes = [...new Set([...nameFilter,...descFilter,...ingFilter])];
+    }
+    allTags = ingTags.concat(appTags, uteTags);
+    searchbarRecipes.forEach((r) => filterTags(r));
     displayRecipes(filteredRecipes);
 }
